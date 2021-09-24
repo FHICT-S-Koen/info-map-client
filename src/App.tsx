@@ -1,18 +1,11 @@
-import { useAuth0 } from '@auth0/auth0-react';
-import Login from './Login';
-import Logout from './Logout';
+import Header from "./components/Header";
+import Body from "./components/Body";
 
 export default function App() {
-  const {isAuthenticated} = useAuth0()
-
-  if (isAuthenticated) return (
+  return (
     <>
-      <div>Your logged in!</div>
-      <Logout />
-    </>)
-  else return (
-    <>
-      <div>Your logged out!</div>
-      <Login />
-    </>)
+      <Header />
+      <Body />
+    </>
+  )
 }
