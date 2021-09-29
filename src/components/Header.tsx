@@ -1,10 +1,10 @@
-import Auth from "./Auth"
+import AuthButton from "./authentication/AuthButton"
 import "./Header.css"
 
 export default function Header() {
 	return (
 		<div className="Header">
-			<Auth />
+			<AuthButton />
 		</div>
 	) 
 }
