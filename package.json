@@ -28,7 +28,13 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "indent": ["error", 2],
+      "no-multi-spaces": ["error"],
+      "quotes": ["error", "single"],
+      "semi": ["error", "never"]
+    }
   },
   "browserslist": {
     "production": [
