@@ -5,13 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from "@auth0/auth0-react";
 
+const providerConfig = {
+  domain: `${process.env.REACT_APP_AUTH0_DOMAIN}`,
+  clientId: `${process.env.REACT_APP_AUTH0_CLIENT_KEY}`,
+  redirectUri: window.location.origin,
+  audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
+  scope: "read:current_user update:current_user_metadata",
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <Auth0Provider
-    domain="dev-lq75abqz.eu.auth0.com"
-    clientId="kDmXepiyYs05lIAzUzlzxuJgoeqp37L7"
-    redirectUri={window.location.origin}
-    >
+    <Auth0Provider {...providerConfig}>
       <App />
     </Auth0Provider>
   </React.StrictMode>,
