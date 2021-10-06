@@ -1,5 +1,5 @@
-import AuthButton from './authentication/AuthButton'
-import './Header.css'
+import AuthButton from '../auth/AuthButton'
+import '../styles/Header.css'
 
 export default function Header() {
   return (
