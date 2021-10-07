@@ -5,7 +5,7 @@ import axios from 'axios'
 export default function Fetch() {
   const { getAccessTokenSilently } = useAuth0()
   const domain = `${process.env.REACT_APP_AUTH0_DOMAIN}`
-  const apiURL = `${process.env.REACT_APP_API_URL}`
+  const apiURL = `${process.env.REACT_APP_HOST_URL}`
 
   const [state, setState] = useState('')
 
