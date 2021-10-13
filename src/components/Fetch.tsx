@@ -14,11 +14,11 @@ export default function Fetch() {
       audience: `https://${domain}/api/v2/`, 
       scope: 'read:current_user'
     })
-    const data = await axios.get(`${apiURL}/private`, {
+    const response = await axios.get(`${apiURL}/private`, {
       headers: {
         authorization: `Bearer ${accessToken}`
       }})
-    setState(data.data)
+    setState(response.data)
     console.log(state)
   } 
 

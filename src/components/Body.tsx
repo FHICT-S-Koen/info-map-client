@@ -1,6 +1,5 @@
-import Fetch from './Fetch'
+import Example from './Example'
 
 export default function Body() {
-
-  return <Fetch />
+  return <Example />
 }
