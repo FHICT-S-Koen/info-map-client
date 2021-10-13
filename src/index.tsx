@@ -4,6 +4,7 @@ import './styles/index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Auth0Provider } from '@auth0/auth0-react'
+import StoreProvider from './Store'
 
 const providerConfig = {
   domain: `${process.env.REACT_APP_AUTH0_DOMAIN}`,
@@ -15,9 +16,11 @@ const providerConfig = {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Auth0Provider {...providerConfig}>
-      <App />
-    </Auth0Provider>
+    <StoreProvider>
+      <Auth0Provider {...providerConfig}>
+        <App />
+      </Auth0Provider>
+    </StoreProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )
