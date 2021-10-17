@@ -5,8 +5,8 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm ci
-RUN npm i @craco/craco
+RUN npm run build
 
 COPY . .
 
-CMD ["npm", "start"]
+CMD ["npm", "start:prod"]
