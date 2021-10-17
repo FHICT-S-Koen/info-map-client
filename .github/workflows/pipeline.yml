@@ -1,0 +1,43 @@
+name: CI/CD
+
+on:
+  pull_request:
+    branches: production
+
+jobs: 
+  build:
+    runs_on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with: 
+          node_version: 12
+      
+      - name: Install node-modules
+        run: npm ci
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm build
+
+      - name: Build Docker image
+        run: docker build -t registry.heroku.com/${{ secrets.HEROKU_APP }}/web:latest .
+      
+      - name: Docker image info
+        run: docker images
+  
+  deploy:
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to container registry
+        run: heroku container:login
+
+      - name: Push Docker image
+        run: docker push registry.heroku.com/${{ secrets.HEROKU_APP }}/web
+      
+      - name: 
+        run: heroku container:release -a ${{ secrets.HEROKU_APP }} web
