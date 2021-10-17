@@ -7,10 +7,10 @@ import { Auth0Provider } from '@auth0/auth0-react'
 import StoreProvider from './Store'
 
 const providerConfig = {
-  domain: `${process.env.REACT_APP_AUTH0_DOMAIN}`,
-  clientId: `${process.env.REACT_APP_AUTH0_CLIENT_KEY}`,
+  domain: process.env.REACT_APP_AUTH0_DOMAIN || '',
+  clientId: process.env.REACT_APP_AUTH0_CLIENT_KEY || '',
   redirectUri: window.location.origin,
-  audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`,
+  audience: process.env.REACT_APP_AUTH0_AUDIENCE || '',
   scope: 'read:current_user update:current_user_metadata',
 }
 
