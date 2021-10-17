@@ -5,11 +5,10 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm ci
-# RUN npm install -g serve
+RUN npm install -g serve
 
 COPY . .
 
-# RUN npm run build
+RUN npm run build
 
-# CMD ["serve", "-s", "build"]
-CMD [ "npm", "start" ]
+CMD ["serve", "-s", "build"]
