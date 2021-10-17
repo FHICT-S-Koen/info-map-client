@@ -23,7 +23,11 @@ jobs:
         run: npm build
 
       - name: Build Docker image
-        run: docker build -t registry.heroku.com/${{ secrets.HEROKU_APP }}/web:latest .
+        run: docker build --build-arg 
+          REACT_APP_AUTH0_DOMAIN=${{ secrets.REACT_APP_AUTH0_DOMAIN }}
+          REACT_APP_AUTH0_CLIENT_KEY=${{ secrets.REACT_APP_AUTH0_CLIENT_KEY }}
+          REACT_APP_AUTH0_AUDIENCE=${{ secrets.REACT_APP_AUTH0_AUDIENCE }}
+           -t registry.heroku.com/${{ secrets.HEROKU_APP }}/web:latest .
       
       - name: Docker image info
         run: docker images
