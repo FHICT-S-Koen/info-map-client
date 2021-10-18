@@ -22,19 +22,16 @@ jobs:
 
       - name: Build
         run: npm build
-        
-      - name: Set ENV
-        run: |
-          echo "REACT_APP_AUTH0_DOMAIN=${{ secrets.REACT_APP_AUTH0_DOMAIN }}" >> $GITHUB_ENV
-          echo "REACT_APP_AUTH0_CLIENT_KEY=${{ secrets.REACT_APP_AUTH0_CLIENT_KEY }}" >> $GITHUB_ENV
-          echo "REACT_APP_AUTH0_AUDIENCE=${{ secrets.REACT_APP_AUTH0_AUDIENCE }}" >> $GITHUB_ENV
 
       - name: Build Docker image
         env:
           REACT_APP_AUTH0_DOMAIN: $REACT_APP_AUTH0_DOMAIN
           REACT_APP_AUTH0_CLIENT_KEY: $REACT_APP_AUTH0_CLIENT_KEY
           REACT_APP_AUTH0_AUDIENCE: $REACT_APP_AUTH0_AUDIENCE
-        run: docker build -t registry.heroku.com/${{ secrets.HEROKU_APP }}/web:latest .
+        run: docker build -t registry.heroku.com/${{ secrets.HEROKU_APP }}/web:latest 
+              -build-arg REACT_APP_AUTH0_DOMAIN=${{ secrets.REACT_APP_AUTH0_DOMAIN }} 
+              -build-arg REACT_APP_AUTH0_CLIENT_KEY=${{ secrets.REACT_APP_AUTH0_CLIENT_KEY }} 
+              -build-arg REACT_APP_AUTH0_AUDIENCE=${{ secrets.REACT_APP_AUTH0_AUDIENCE }} .
         
       - name: Docker image info
         run: docker images
