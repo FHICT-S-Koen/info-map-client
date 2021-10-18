@@ -25,11 +25,11 @@ jobs:
 
       - name: Build Docker image
         env:
-            DOMAIN: ${{ secrets.REACT_APP_AUTH0_DOMAIN }}
-            CLIENT_KEY: ${{ secrets.REACT_APP_AUTH0_CLIENT_KEY }}
-            AUDIENCE: ${{ secrets.REACT_APP_AUTH0_AUDIENCE }}
+          REACT_APP_AUTH0_DOMAIN: ${{ secrets.REACT_APP_AUTH0_DOMAIN }}
+          REACT_APP_AUTH0_CLIENT_KEY: ${{ secrets.REACT_APP_AUTH0_CLIENT_KEY }}
+          REACT_APP_AUTH0_AUDIENCE: ${{ secrets.REACT_APP_AUTH0_AUDIENCE }}
         run: docker build -t registry.heroku.com/${{ secrets.HEROKU_APP }}/web:latest .
-      
+        
       - name: Docker image info
         run: docker images
 
