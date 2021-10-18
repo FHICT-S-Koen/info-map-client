@@ -7,6 +7,10 @@ on:
 jobs: 
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      DOMAIN: ${{ secrets.REACT_APP_AUTH0_DOMAIN }}
+      CLIENT_KEY: ${{ secrets.REACT_APP_AUTH0_CLIENT_KEY }}
+      AUDIENCE: ${{ secrets.REACT_APP_AUTH0_AUDIENCE }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -24,9 +28,9 @@ jobs:
 
       - name: Build Docker image
         run: docker build 
-          --build-arg REACT_APP_AUTH0_DOMAIN=${{ secrets.REACT_APP_AUTH0_DOMAIN }}
-          --build-arg REACT_APP_AUTH0_CLIENT_KEY=${{ secrets.REACT_APP_AUTH0_CLIENT_KEY }}
-          --build-arg REACT_APP_AUTH0_AUDIENCE=${{ secrets.REACT_APP_AUTH0_AUDIENCE }}
+          --build-arg REACT_APP_AUTH0_DOMAIN=$DOMAIN
+          --build-arg REACT_APP_AUTH0_CLIENT_KEY=$CLIENT_KEY
+          --build-arg REACT_APP_AUTH0_AUDIENCE=$AUDIENCE
           -t registry.heroku.com/${{ secrets.HEROKU_APP }}/web:latest .
       
       - name: Docker image info
