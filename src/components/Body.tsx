@@ -1,5 +1,9 @@
 import Example from './Example'
+import Fetch from './Fetch'
 
 export default function Body() {
-  return <Example />
+  return <div>
+    <Fetch />
+    <Example />
+  </div>
 }
